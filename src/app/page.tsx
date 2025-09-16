@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function Home() {
   const [email, setEmail] = useState('');
@@ -20,12 +21,13 @@ export default function Home() {
       });
       
       if (response.ok) {
-        setMessage('Thanks for signing up! We\'ll notify you when we launch.');
+        setMessage("Thanks for signing up! We'll notify you when we launch.");
         setEmail('');
       } else {
         setMessage('Something went wrong. Please try again.');
       }
     } catch (error) {
+      console.error('Signup error:', error);
       setMessage('Something went wrong. Please try again.');
     }
     
@@ -35,10 +37,12 @@ export default function Home() {
   return (
     <main className="container">
       <div className="content">
-        <img 
+        <Image 
           src="/astonces.png" 
           alt="Aston Computing and Electronics Society" 
           className="logo"
+          width={120}
+          height={120}
         />
         
         <h1 className="headline">
@@ -51,7 +55,7 @@ export default function Home() {
         </p>
         
         <div className="features">
-          <h3>What's Coming:</h3>
+          <h3>What&apos;s Coming:</h3>
           <ul>
             <li>🔧 Request hardware assistance for your projects</li>
             <li>🏆 Inquire about upcoming competitions</li>
