@@ -1,55 +1,61 @@
 'use client';
+import Link from 'next/link';
+import ProjectOfTerm from './project-of-the-term/page'; 
+import FAQSection from './components/faq/FAQSection';  
 
-import Login from './Login';
-import { AuthProvider, useAuth } from './AuthProvider';
-
-import Header from './components/Header';
-import Calendar from './components/Calendar';
-import HardwareRequestForm from './components/HardwareRequestForm';
-import SupportForm from './components/SupportForm';
-import HonourList from './components/HonourList';
-import ProjectOfTerm from './components/ProjectOfTerm';
-import CareerSupportForm from './components/CareerSupportForm';
-import FAQSection from './components/FAQSection';
-
-const sections = [
-  'Calendar',
-  'Hardware Request',
-  'Support',
-  'Honour List',
-  'Project of the Term',
-  'Career Support',
-  'FAQ'
+const execCommittee = [
+  { name: 'Laith Masri', role: 'President, Webmaster', linkedin: 'https://linkedin.com/in/laithmasri' },
+  { name: 'Bilal Ahmed', role: 'Vice President' },
+  { name: 'Rhys Tshimpanga', role: 'Treasurer' },
+  { name: 'John Pritchard', role: 'Social Secretary' },
+  { name: 'Amirah Begum', role: 'Social Secretary' },
+  { name: 'Jeremy Antwi', role: 'General Secretary' },
 ];
 
 export default function Home() {
   return (
-    <AuthProvider>
-      <MainContent />
-    </AuthProvider>
-  );
-}
+    <main className="min-h-screen bg-base-200 p-6 flex flex-col items-center gap-12">
 
-function MainContent() {
-  const { loggedIn, login } = useAuth();
+      {/* Who We Are */}
+      <section className="card bg-base-100 p-6 rounded-xl shadow-lg max-w-3xl w-full">
+        <h2 className="card-title text-primary mb-6">Who We Are</h2>
 
-  if (!loggedIn) {
-    return <Login onLogin={login} />;
-  }
+        <h3 className="font-semibold mb-2">Executive Committee</h3>
+        <div className="flex flex-wrap gap-3 mb-6">
+          {execCommittee.map(({ name, role, linkedin }) => (
+            linkedin ? (
+              <Link
+                key={name}
+                href={linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="badge badge-primary badge-outline cursor-pointer"
+                title={`${role} - ${name}`}
+              >
+                {name}
+              </Link>
+            ) : (
+              <span
+                key={name}
+                className="badge badge-secondary badge-outline"
+                title={role}
+              >
+                {name}
+              </span>
+            )
+          ))}
+        </div>
 
-  return (
-    <div>
-      <Header sections={sections} />
-      <main>
-        <section id="calendar"><Calendar /></section>
-        <section id="hardware-request"><HardwareRequestForm /></section>
-        <section id="support"><SupportForm /></section>
-        <section id="honour-list"><HonourList /></section>
-        <section id="project-of-the-term"><ProjectOfTerm /></section>
-        <section id="career-support"><CareerSupportForm /></section>
-        <section id="faq"><FAQSection /></section>
-      </main>
-    </div>
+        <h3 className="font-semibold mb-2">Volunteers</h3>
+        <p>Applications are underway...</p>
+      </section>
+
+      {/* Project of the Term Section */}
+      <ProjectOfTerm />
+
+      {/* FAQ Section */}
+      <FAQSection />
+    </main>
   );
 }
 
