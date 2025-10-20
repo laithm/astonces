@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "daisyui": "^4.0.7",
     "next": "15.5.3",
     "react": "19.1.0",
     "react-calendar": "^6.0.0",
@@ -20,9 +21,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.14",
     "eslint": "^9",
     "eslint-config-next": "15.5.3",
-    "tailwindcss": "^4",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.3",
     "typescript": "^5"
   }
 }

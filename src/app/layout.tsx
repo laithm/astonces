@@ -48,7 +48,10 @@ export default function RootLayout({
         />
         <link rel="icon" href="/astonces.png" />
       </head>
-      <body>{children}</body>
+      {/* The forest theme is activated with data-theme attribute */}
+      <body data-theme="forest" className="min-h-screen bg-base-200 font-inter">
+        {children}
+      </body>
     </html>
   );
 }

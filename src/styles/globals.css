@@ -1,177 +1,55 @@
-/* Basic Reset & Background */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-html, body {
-  height: 100%;
+/* Optional: Font for Inter, or swap for your preferred font */
+body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #2d3748;
 }
 
-/* Container & Card */
-.container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1rem;
+/* Remove ALL custom background and card CSS—let DaisyUI's base-100, base-200, etc. work naturally */
+
+/* Example: sticky header helpers (OPTIONAL, DaisyUI likely covers these) */
+.header {
+  @apply sticky top-0 z-50 bg-base-100 bg-opacity-95 shadow;
 }
 
-.content, .main-card, .form-card {
-  background: rgba(255, 255, 255, 0.93);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 3rem 2rem;
-  max-width: 520px;
-  width: 100%;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+.main-title {
+  @apply text-primary text-3xl font-bold mt-2 mb-6;
 }
 
-/* Headings */
-h1, h2, h3, h4 {
-  color: #667eea;
-  margin-bottom: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+.legend-nav {
+  @apply flex gap-4 justify-center pb-3;
 }
 
-/* Inputs & Forms */
-form {
-  margin-bottom: 2rem;
-  text-align: left;
+.legend-link {
+  @apply text-base-content bg-base-200 rounded-xl py-2 px-6 no-underline font-semibold transition hover:bg-primary hover:text-base-100;
 }
 
-input, textarea, select {
-  width: 100%;
-  padding: 0.9rem 1rem;
-  margin: 8px 0;
-  border: 1px solid #a3bffa;
-  border-radius: 10px;
-  background: rgba(240, 238, 255, 0.7);
-  font-size: 1rem;
-  transition: border 0.2s;
-  color: #2d3748;
+/* Cards, forms and sections use DaisyUI classes in JSX:
+   Example: <div className="card bg-base-100 shadow-xl p-8 rounded-2xl">...</div>
+            <input className="input input-bordered w-full" />
+            <button className="btn btn-primary w-full" />
+*/
+
+/* FAQ DaisyUI helpers (OPTIONAL) */
+.faq-section {
+  @apply bg-base-100 rounded-xl p-8 shadow mt-8;
 }
 
-input:focus, textarea:focus, select:focus {
-  border: 1.5px solid #667eea;
-  outline: none;
+.faq-item summary {
+  @apply cursor-pointer text-secondary font-semibold text-lg;
 }
 
-button {
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-  color: #fff;
-  font-weight: 600;
-  border: none;
-  border-radius: 12px;
-  padding: 0.7em 1.4em;
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.10);
-  cursor: pointer;
-  margin-top: 8px;
-  transition: background 0.25s;
+.faq-item div {
+  @apply text-base-content pt-2 text-base;
 }
 
-button:hover {
-  background: linear-gradient(90deg, #764ba2 0%, #667eea 100%);
-}
+/* Responsive tweaks using Tailwind utilities in your JSX are preferred */
 
-/* Card Effects */
-.feature-card, .calendar-card {
-  background: rgba(255, 255, 255, 0.94);
-  border: 2px solid rgba(102, 126, 234, 0.12);
-  border-radius: 16px;
-  padding: 1.25rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 10px 35px rgba(102, 126, 234, 0.16);
-  transition: box-shadow 0.2s, border 0.2s;
-}
+/* Remove custom gradients, colors, and border radius styles — DaisyUI applies via the theme config and utility classes! */
 
-.feature-card:hover {
-  box-shadow: 0 12px 40px #667eea1f;
-  border-color: #764ba2;
-}
+/* If you use the calendar, you may want tiny tweaks for react-calendar, otherwise let DaisyUI style inputs/buttons. */
 
-/* Honour List & Badges */
-.honour-list {
-  margin-top: 1.5rem;
-}
-
-.badge {
-  display: inline-block;
-  background: linear-gradient(90deg,#667eea,#764ba2);
-  color: #fff;
-  padding: 0.38em 1em;
-  border-radius: 18px;
-  margin: 0 6px;
-  font-weight: 500;
-  font-size: 1em;
-  box-shadow: 0 2px 10px #667eea26;
-}
-
-/* Project Card */
-.project-card {
-  background: rgba(240, 238, 255, 0.87);
-  border-radius: 15px;
-  box-shadow: 0 6px 25px #764ba25e;
-  padding: 2rem;
-  margin-top: 1rem;
-}
-
-.project-card a {
-  color: #3182ce;
-  text-decoration: underline;
-}
-
-/* Calendar Customisation */
-.react-calendar {
-  border-radius: 16px;
-  box-shadow: 0 6px 24px #667eea1c;
-  background: rgba(255,255,255,0.98);
-  border: none;
-  margin: 0 auto 1.5rem auto;
-  font-family: 'Inter', sans-serif;
-}
-
-.react-calendar__tile--now {
-  background: #a3bffa70 !important;
-  color: #667eea !important;
-}
-.react-calendar__tile--active {
-  background: linear-gradient(90deg,#667eea,#764ba2) !important;
-  color: #fff !important;
-}
-.react-calendar__tile {
-  border-radius: 10px !important;
-  transition: background 0.2s;
-}
-
-/* Responsive Design */
-@media (max-width: 700px) {
-  .content, .main-card, .form-card {
-    padding: 2rem 1rem;
-    max-width: 99vw;
-    border-radius: 12px;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-}
-
-/* Footer */
-.footer {
-  border-top: 1px solid #957cea33;
-  margin-top: 1.2rem;
-  padding-top: 0.8rem;
-  text-align: center;
-  font-size: 0.96em;
-  color: #764ba2;
-  background: none;
-}
+/* Set the theme in the layout.tsx with data-theme="forest" so that all classes use the forest palette. */
 
