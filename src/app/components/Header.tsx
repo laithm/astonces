@@ -14,12 +14,18 @@ const sectionLinks = [
 export default function Header() {
   return (
     <header className="header">
-      <nav className="legend-nav">
+      <nav className="legend-nav" aria-label="Primary Navigation">
         {sectionLinks.map(({ label, href }) => (
-          <Link key={href} href={href} className="legend-link">{label}</Link>
+          <Link
+            key={href}
+            href={href}
+            className="legend-link px-4 py-2 rounded-lg transition-colors hover:bg-primary hover:text-primary-content focus-visible:outline focus-visible:outline-primary focus-visible:outline-2"
+          >
+            {label}
+          </Link>
         ))}
       </nav>
-      <h1 className="main-title">
+      <h1 className="main-title text-primary text-center mt-2 mb-6 font-extrabold tracking-wide">
         Aston Computing and Electronics Society
       </h1>
     </header>
