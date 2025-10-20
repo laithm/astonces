@@ -17,7 +17,7 @@ export default function Home() {
       <section className="card bg-base-100 p-8 rounded-xl shadow-lg max-w-2xl w-full">
         <h2 className="card-title text-primary mb-4">Who We Are</h2>
         <p className="text-base-content mb-8">
-          Bringing together Aston’s brightest minds in computing & electronics, from hackathons and technical projects to workshops and socials. We drive practical innovation for everyone at Aston University.
+          Bringing together Aston's brightest minds in computing & electronics, from hackathons and technical projects to workshops and socials. We drive practical innovation for everyone at Aston University.
         </p>
         <h3 className="font-semibold mb-4">Executive Committee</h3>
         <div className="flex flex-col gap-4">
