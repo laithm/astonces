@@ -2,12 +2,12 @@
 
 type BadgeType = 'hardware' | 'software' | 'organiser' | 'winner' | 'project';
 
-const badgeConfig: Record<BadgeType, { label: string; color: string }> = {
-  hardware: { label: 'Hardware', color: '#667eea' },
-  software: { label: 'Software', color: '#764ba2' },
-  organiser: { label: 'Organiser', color: '#38b2ac' },
-  winner: { label: 'Winner', color: '#ed8936' },
-  project: { label: 'Project', color: '#3182ce' }
+const badgeClassMap: Record<BadgeType, string> = {
+  hardware: 'badge-primary',
+  software: 'badge-secondary',
+  organiser: 'badge-accent',
+  winner: 'badge-warning',
+  project: 'badge-info',
 };
 
 interface BadgeProps {
@@ -15,23 +15,11 @@ interface BadgeProps {
 }
 
 export default function Badge({ type }: BadgeProps) {
-  const badge = badgeConfig[type] || { label: 'Badge', color: '#718096' };
+  const badgeClass = badgeClassMap[type] || 'badge';
 
   return (
-    <span
-      style={{
-        display: 'inline-block',
-        background: badge.color,
-        color: 'white',
-        padding: '0.4em 0.9em',
-        margin: '0 0.4em',
-        fontSize: '0.95em',
-        fontWeight: 500,
-        borderRadius: '1em',
-        boxShadow: '0 2px 6px rgba(102,126,234,0.15)'
-      }}
-    >
-      {badge.label}
+    <span className={`badge ${badgeClass} rounded-full px-3 py-1 text-white font-semibold shadow-md`}>
+      {type.charAt(0).toUpperCase() + type.slice(1)}
     </span>
   );
 }
