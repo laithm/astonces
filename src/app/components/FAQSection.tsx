@@ -21,12 +21,16 @@ const faqs = [
 
 export default function FAQSection() {
   return (
-    <div className="faq-section">
-      <h2>Frequently Asked Questions</h2>
+    <div className="card bg-base-100 rounded-xl p-6 shadow-lg max-w-xl mx-auto mt-10">
+      <h2 className="card-title text-primary mb-6">Frequently Asked Questions</h2>
       {faqs.map((faq, idx) => (
-        <details key={idx} className="faq-item">
-          <summary>{faq.question}</summary>
-          <div>{faq.answer}</div>
+        <details key={idx} className="faq-item mb-4">
+          <summary className="cursor-pointer text-secondary font-semibold text-lg hover:text-primary transition-colors">
+            {faq.question}
+          </summary>
+          <div className="mt-3 text-base-content text-base pl-2">
+            {faq.answer}
+          </div>
         </details>
       ))}
     </div>

@@ -1,24 +1,59 @@
 'use client';
 import { useState } from 'react';
+
 export default function CareerSupportForm() {
   const [form, setForm] = useState({ name: '', area: '', details: '' });
-  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
-  const handleSubmit = e => {
-    e.preventDefault();
-    // Save/Submit logic here
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Save/submit logic here
+    alert('Form submitted!'); 
+    setForm({ name: '', area: '', details: '' }); // reset form
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Career Support Request</h2>
-      <input name="name" placeholder="Your Name" onChange={handleChange} required />
-      <select name="area" onChange={handleChange} required>
-        <option value="">Select area</option>
+    <form onSubmit={handleSubmit} className="card bg-base-100 p-6 rounded-lg shadow-lg max-w-lg mx-auto flex flex-col gap-4">
+      <h2 className="card-title text-primary mb-4">Career Support Request</h2>
+      
+      <input 
+        name="name" 
+        placeholder="Your Name" 
+        value={form.name}
+        onChange={handleChange}
+        required
+        className="input input-bordered w-full"
+      />
+      
+      <select 
+        name="area" 
+        value={form.area}
+        onChange={handleChange}
+        required
+        className="select select-bordered w-full"
+      >
+        <option value="" disabled>Select area</option>
         <option value="cv">CV Review</option>
         <option value="internship">Internship</option>
         <option value="career">General Career Advice</option>
       </select>
-      <textarea name="details" placeholder="Details..." onChange={handleChange} required />
-      <button type="submit">Submit Request</button>
+      
+      <textarea 
+        name="details" 
+        placeholder="Details..." 
+        value={form.details}
+        onChange={handleChange}
+        required
+        className="textarea textarea-bordered w-full"
+        rows={4}
+      />
+
+      <button type="submit" className="btn btn-primary w-full">
+        Submit Request
+      </button>
     </form>
   );
 }
