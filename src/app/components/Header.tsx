@@ -35,11 +35,12 @@ export default function Header() {
           priority
         />
         <span
-          className="text-3xl font-extrabold text-primary cursor-default select-text
-                     animate-pulse drop-shadow-lg"
+          className="text-3xl font-extrabold text-primary cursor-pointer select-text animate-pulse drop-shadow-lg"
           title="Aston Computing and Electronics Society (CES)"
         >
-          CES
+          <Link href="/home" target="_blank" rel="noopener noreferrer">
+            CES
+          </Link>
         </span>
       </div>
 
