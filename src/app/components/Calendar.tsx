@@ -42,7 +42,7 @@ export default function InteractiveCalendar() {
     <div className="card bg-base-100 p-6 rounded-lg shadow-lg max-w-md mx-auto mb-8">
       <h2 className="card-title text-primary mb-4">Events Calendar</h2>
       <Calendar
-        onChange={setSelectedDate}
+        onChange={(value) => setSelectedDate(value as Date | Date[])}
         value={selectedDate}
         tileContent={tileContent}
         className="rounded-lg shadow-inner"
