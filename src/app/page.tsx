@@ -63,10 +63,9 @@ export default function Home() {
         <p className="text-base-content mb-8">
           Log in and see the upcoming features, request support, and get involved.
         </p>
-        <Login onLogin={() => {}} />
+        <Login /> {/* No props passed here */}
       </section>
     </main>
   );
 }
-
 
