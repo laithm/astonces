@@ -1,22 +1,24 @@
 'use client';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
-export default function Login({ onLogin }: { onLogin: () => void }) {
+export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (username === 'admin' && password === '123') {
-      onLogin();
+      router.push('/home'); // Redirect to member home page
     } else {
       setError('Invalid credentials');
     }
   };
 
   return (
-    <form 
+    <form
       className="card bg-base-100 p-6 rounded-lg shadow-lg max-w-md mx-auto flex flex-col gap-4"
       onSubmit={handleSubmit}
     >
