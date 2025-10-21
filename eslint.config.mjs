@@ -13,6 +13,7 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     ignores: [
+      "astonces/**", // Ignores all files and folders in astonces/
       "node_modules/**",
       ".next/**",
       "out/**",
@@ -23,3 +24,4 @@ const eslintConfig = [
 ];
 
 export default eslintConfig;
+

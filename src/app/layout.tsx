@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import '../styles/globals.css';
+import Footer from './components/Footer'; // Adjust path if your Footer is elsewhere
 
 export const metadata: Metadata = {
   title: 'Aston Computing and Electronics Society - Coming Soon',
@@ -48,9 +49,12 @@ export default function RootLayout({
         />
         <link rel="icon" href="/astonces.png" />
       </head>
-      {/* The forest theme is activated with data-theme attribute */}
-      <body data-theme="forest" className="min-h-screen bg-base-200 font-inter">
-        {children}
+      <body data-theme="forest" className="min-h-screen bg-base-200 font-inter flex flex-col">
+        <main className="flex-grow">
+          {children}
+        </main>
+        <div className="min-h-[30vh]" />
+        <Footer />
       </body>
     </html>
   );
