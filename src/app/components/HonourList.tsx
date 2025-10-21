@@ -1,9 +1,12 @@
 'use client';
 import Badge from './Badge';
 
+// If using TypeScript, import or declare BadgeType:
+// import type { BadgeType } from './Badge';
+
 const honours = [
-  { name: 'Alex Hardware Lead', badges: ['hardware'] },
-  { name: 'Morgan Code Champ', badges: ['software'] },
+  { name: 'Laith Hardware Lead', badges: ['hardware'] /* as BadgeType[] */ },
+  { name: 'Bilal Code Champ', badges: ['software'] /* as BadgeType[] */ },
 ];
 
 export default function HonourList() {
@@ -15,7 +18,7 @@ export default function HonourList() {
           <div key={member.name} className="flex items-center justify-between gap-4">
             <span className="font-semibold text-base-content">{member.name}</span>
             <div className="flex flex-wrap gap-2">
-              {member.badges.map(b => <Badge key={b} type={b} />)}
+              {member.badges.map(b => <Badge key={b} type={b as any} />)}
             </div>
           </div>
         ))}
