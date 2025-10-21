@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
-import Login from './Login'; // adjust path if needed
+import Login from './Login'; // Adjust path if needed
+/* eslint-disable react/no-unescaped-entities */
 
 const execCommittee = [
   { name: 'Laith Masri', roles: ['President', 'Webmaster'], linkedin: 'https://linkedin.com/in/laithmasri' },
@@ -13,7 +14,8 @@ const execCommittee = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-base-200 flex flex-col items-center justify-center p-6 gap-16">
+    <main className="min-h-screen bg-base-200 flex flex-col items-center p-6 gap-16">
+      {/* Who We Are Section */}
       <section className="card bg-base-100 p-8 rounded-xl shadow-lg max-w-2xl w-full">
         <h2 className="card-title text-primary mb-4">Who We Are</h2>
         <p className="text-base-content mb-8">
@@ -55,14 +57,12 @@ export default function Home() {
         <p>Applications are underway...</p>
       </section>
 
-      <section className="text-center mt-12">
+      {/* Try out Beta and Login */}
+      <section className="text-center mt-12 max-w-md w-full">
         <h3 className="text-xl font-bold text-primary mb-2">Try out the website's beta</h3>
         <p className="text-base-content mb-8">
           Log in and see the upcoming features, request support, and get involved.
         </p>
-      </section>
-
-      <section className="w-full max-w-md">
         <Login onLogin={() => {}} />
       </section>
     </main>
