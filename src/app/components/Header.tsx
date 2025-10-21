@@ -1,5 +1,7 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
+import { useRef } from 'react';
 
 const sectionLinks = [
   { label: 'Calendar', href: '/calendar' },
@@ -12,22 +14,54 @@ const sectionLinks = [
 ];
 
 export default function Header() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  function handleWheel(e: React.WheelEvent) {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft += e.deltaY;
+      e.preventDefault();
+    }
+  }
+
   return (
-    <header className="header">
-      <nav className="legend-nav" aria-label="Primary Navigation">
+    <header className="flex items-center justify-between bg-base-100 px-6 py-3 border-b border-base-content select-none">
+      {/* Logo and CES Text */}
+      <div className="flex items-center gap-3">
+        <Image
+          src="/astonces.png"
+          alt="ASTONCES Logo"
+          width={48}
+          height={48}
+          priority
+        />
+        <span
+          className="text-3xl font-extrabold text-primary cursor-default select-text
+                     animate-pulse drop-shadow-lg"
+          title="Aston Computing and Electronics Society (CES)"
+        >
+          CES
+        </span>
+      </div>
+
+      {/* Navigation Links */}
+      <nav
+        className="flex overflow-x-auto max-w-[70%] border border-base-content rounded-md p-1 gap-2 scrollbar-thin scrollbar-thumb-primary scrollbar-track-base-200"
+        ref={scrollRef}
+        onWheel={handleWheel}
+        aria-label="Primary Navigation"
+      >
         {sectionLinks.map(({ label, href }) => (
           <Link
             key={href}
             href={href}
-            className="legend-link px-4 py-2 rounded-lg transition-colors hover:bg-primary hover:text-primary-content focus-visible:outline focus-visible:outline-primary focus-visible:outline-2"
+            className="flex-shrink-0 px-4 py-2 rounded-lg
+                       transition-colors hover:bg-primary hover:text-primary-content
+                       focus-visible:outline focus-visible:outline-primary focus-visible:outline-2"
           >
             {label}
           </Link>
         ))}
       </nav>
-      <h1 className="main-title text-primary text-center mt-2 mb-6 font-extrabold tracking-wide">
-        Aston Computing and Electronics Society
-      </h1>
     </header>
   );
 }
