@@ -1,71 +1,51 @@
 'use client';
-import Link from 'next/link';
-import Login from './Login'; // adjust path if needed
+import { useState } from 'react';
 
-const execCommittee = [
-  { name: 'Laith Masri', roles: ['President', 'Webmaster'], linkedin: 'https://linkedin.com/in/laithmasri' },
-  { name: 'Bilal Ahmed', roles: ['Vice President'] },
-  { name: 'Rhys Tshimpanga', roles: ['Treasurer'] },
-  { name: 'John Pritchard', roles: ['Social Secretary'] },
-  { name: 'Amirah Begum', roles: ['Social Secretary'] },
-  { name: 'Jeremy Antwi', roles: ['General Secretary'] },
-];
+export default function Login({ onLogin }: { onLogin: () => void }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
-export default function Home() {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (username === 'admin' && password === '123') {
+      onLogin();
+    } else {
+      setError('Invalid credentials');
+    }
+  };
+
   return (
-    <main className="min-h-screen bg-base-200 flex flex-col items-center justify-center p-6 gap-16">
-      <section className="card bg-base-100 p-8 rounded-xl shadow-lg max-w-2xl w-full">
-        <h2 className="card-title text-primary mb-4">Who We Are</h2>
-        <p className="text-base-content mb-8">
-          Bringing together Aston’s brightest minds in computing & electronics, from hackathons and technical projects to workshops and socials. We drive practical innovation for everyone at Aston University.
+    <form 
+      className="card bg-base-100 p-6 rounded-lg shadow-lg max-w-md mx-auto flex flex-col gap-4"
+      onSubmit={handleSubmit}
+    >
+      <h2 className="card-title text-primary mb-6 text-center">Member Login</h2>
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={e => setUsername(e.target.value)}
+        required
+        className="input input-bordered w-full"
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+        required
+        className="input input-bordered w-full"
+      />
+      <button type="submit" className="btn btn-primary w-full">
+        Login
+      </button>
+      {error && (
+        <p className="text-error text-center font-semibold mt-2">
+          {error}
         </p>
-        <h3 className="font-semibold mb-4">Executive Committee</h3>
-        <div className="flex flex-col gap-4">
-          {execCommittee.map(({ name, roles, linkedin }) => (
-            <div key={name} className="flex items-center gap-4">
-              <span className="font-semibold text-base-content">{name}</span>
-              <div className="flex flex-wrap gap-2">
-                {roles.map((role, idx) =>
-                  linkedin && role === 'President' ? (
-                    <Link
-                      key={idx}
-                      href={linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="badge badge-primary badge-outline cursor-pointer"
-                      title={role}
-                    >
-                      {role}
-                    </Link>
-                  ) : (
-                    <span
-                      key={idx}
-                      className="badge badge-secondary badge-outline"
-                      title={role}
-                    >
-                      {role}
-                    </span>
-                  )
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-        <h3 className="font-semibold mt-8 mb-2">Volunteers</h3>
-        <p>Applications are underway...</p>
-      </section>
-
-      <section className="text-center mt-12">
-        <h3 className="text-xl font-bold text-primary mb-2">Try out the website's beta</h3>
-        <p className="text-base-content mb-8">
-          Log in and see the upcoming features, request support, and get involved.
-        </p>
-      </section>
-
-      <section className="w-full max-w-md">
-        <Login onLogin={() => {}} />
-      </section>
-    </main>
+      )}
+    </form>
   );
 }
 
