@@ -18,7 +18,9 @@ export default function HardwareRequestPage() {
           <p className="italic text-sm text-base-content/70 mb-8">
             Note: This is an initial version of the hardware request system as part of our closed beta.
           </p>
-          <HardwareRequestForm className="w-full" />
+          <div className="w-full">
+            <HardwareRequestForm />
+          </div>
         </section>
       </main>
     </>
