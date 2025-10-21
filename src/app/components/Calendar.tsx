@@ -20,11 +20,10 @@ function findEvents(date: Date) {
 }
 
 export default function InteractiveCalendar() {
-  const [selectedDate, setSelectedDate] = useState<Date | Date[]>(new Date());
+  // Use just Date (not Date[])
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
-  const displayedDate = Array.isArray(selectedDate) ? selectedDate[0] : selectedDate;
-
-  const dayEvents = findEvents(displayedDate);
+  const dayEvents = findEvents(selectedDate);
 
   function tileContent({ date, view }: { date: Date; view: string }) {
     if (view === 'month') {
@@ -42,14 +41,14 @@ export default function InteractiveCalendar() {
     <div className="card bg-base-100 p-6 rounded-lg shadow-lg max-w-md mx-auto mb-8">
       <h2 className="card-title text-primary mb-4">Events Calendar</h2>
       <Calendar
-        onChange={(value) => setSelectedDate(value as Date | Date[])}
+        onChange={(value) => setSelectedDate(value as Date)}
         value={selectedDate}
         tileContent={tileContent}
         className="rounded-lg shadow-inner"
       />
       <div className="mt-6">
         <h3 className="text-primary font-semibold">
-          Selected Day: {displayedDate.toLocaleDateString()}
+          Selected Day: {selectedDate.toLocaleDateString()}
         </h3>
         {dayEvents.length > 0 ? (
           <div className="bg-base-200 rounded-md p-4 mt-3">
@@ -63,3 +62,4 @@ export default function InteractiveCalendar() {
     </div>
   );
 }
+
