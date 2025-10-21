@@ -3,12 +3,12 @@ import { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
-const tomorrow = new Date();
-tomorrow.setDate(tomorrow.getDate() + 1);
+// Specific date: October 21, 2025
+const eventDate = new Date(2025, 9, 21); // Months are 0-indexed: 9 = October
 
 const events = [
   {
-    date: tomorrow.toDateString(),
+    date: eventDate.toDateString(),
     title: 'Website Show Day',
     description: 'Official demonstration of the new Aston Computing and Electronics Society website!'
   }
